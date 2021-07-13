@@ -22,19 +22,20 @@ res.render( 'index.hbs', { title: 'Index'});
 
 
 /* ENVIAR Datos a la DB 
-router.get('/new-user', (req, res) => {
-  res.render('new-user');
+
+router.get('/contactform', (req, res) => {
+  res.render('contactform');
 });
 
 router.post('/create-user', (req, res) => {
-  const contactform = (req.body);
-  if (!contactform.name)
+  const visitor = (req.body);
+  if (!visitor.name)
   return res.render('error');
   
-
+  
   sqlConnect.query(`
   INSERT INTO \`name\` (\`email\`, \`phone\`, \`message\`)
-  VALUES ('${contactform.name}', '${contactform.email}', '${contactform.phone}', '${contactform.message}');
+  VALUES ('${visitor.name}', '${visitor.email}', '${visitor.phone}', '${visitor.message}');
   `,
   
   (err, result) => {
@@ -43,14 +44,13 @@ router.post('/create-user', (req, res) => {
       return res.render('error');
     }
     console.log(result);
-    res.render('successForm', { name: contactform.name, result});
+    res.render('success', { name: visitor.name, result});
   }
   );
   });
   
 router.get('/api', function(req, res) {
   res.json({message: ''});
-});
-*/
-
+});*/
+  
 module.exports = router;
